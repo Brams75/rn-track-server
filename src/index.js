@@ -1,3 +1,4 @@
+require("dotenv").config();
 require("./models/User");
 require("./models/Track");
 const express = require("express");
@@ -13,8 +14,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri =
-  "mongodb+srv://brams:destructeur007@cluster0.5929p.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const mongoUri = process.env.MONGO_URI;
 
 mongoose.connect(mongoUri);
 mongoose.connection.on("connected", () => {
